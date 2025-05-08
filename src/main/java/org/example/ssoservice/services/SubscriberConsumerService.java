@@ -17,7 +17,7 @@ public class SubscriberConsumerService {
         this.appUserRepository = appUserRepository;
     }
 
-    @RabbitListener(queues = "${const.rabbitmq.subscriber.SUBSCRIBER_CREATED_QUEUE_NAME}")
+    @RabbitListener(queues = "${const.rabbitmq.subscriber.SUBSCRIBER_CREATED_QUEUE_NAME}", errorHandler = "rabbitExceptionsHandler")
     public void consumeSubscriber(NewSubscriberDTO newSubscriberDTO){
         AppUser newAppUser = AppUser.builder()
                 .msisdn(newSubscriberDTO.msisdn())

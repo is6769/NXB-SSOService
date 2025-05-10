@@ -5,7 +5,6 @@ import org.example.ssoservice.entities.AppRole;
 import org.example.ssoservice.entities.AppUser;
 import org.example.ssoservice.repositories.AppUserRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,6 +1,5 @@
 package org.example.ssoservice.controllers;
 
-import io.jsonwebtoken.Claims;
 import org.example.ssoservice.dtos.CredentialsDTO;
 import org.example.ssoservice.dtos.TokenDTO;
 import org.example.ssoservice.services.SecurityService;

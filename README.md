@@ -100,6 +100,16 @@ SSO-сервис выполняет следующие функции:
 - **Spring AMQP**: Для работы с RabbitMQ
 - **Liquibase**: Для управления миграциями базы данных
 
+### База данных
+
+**PostgreSQL**
+- JDBC URL: `jdbc:postgresql://localhost:5434/sso-db`
+- Пользователь: `postgres`
+- Пароль: `postgres`
+- Схема: `public`
+
+В контейнерной среде:
+- JDBC URL: `jdbc:postgresql://sso-db:5432/sso-db`
 
 ### Обработка ошибок
 

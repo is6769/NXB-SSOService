@@ -22,6 +22,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Тесты для класса {@link SecurityController}.
+ * Проверяют эндпоинты аутентификации и интроспекции JWT.
+ */
 @ExtendWith(MockitoExtension.class)
 class SecurityControllerTest {
 

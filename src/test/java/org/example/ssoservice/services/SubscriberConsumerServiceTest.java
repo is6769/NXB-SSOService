@@ -15,6 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Тесты для класса {@link SubscriberConsumerService}.
+ * Проверяют корректность обработки сообщений о новых абонентах.
+ */
 @ExtendWith(MockitoExtension.class)
 class SubscriberConsumerServiceTest {
 

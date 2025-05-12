@@ -12,6 +12,10 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса {@link JwtService}.
+ * Проверяют генерацию, валидацию и извлечение клеймов из JWT-токенов.
+ */
 class JwtServiceTest {
 
     private JwtService jwtService;

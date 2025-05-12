@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+/**
+ * Контроллер, отвечающий за обработку запросов, связанных с безопасностью:
+ * аутентификация пользователей и интроспекция JWT-токенов.
+ */
 @RestController
 @RequestMapping("/auth")
 public class SecurityController {
@@ -20,11 +24,23 @@ public class SecurityController {
         this.securityService = securityService;
     }
 
+    /**
+     * Обрабатывает запрос на вход пользователя в систему.
+     *
+     * @param credentialsDTO DTO с учетными данными пользователя (MSISDN).
+     * @return {@link TokenDTO} с сгенерированным JWT-токеном.
+     */
     @PostMapping("/login")
     public TokenDTO login(@RequestBody CredentialsDTO credentialsDTO){
         return securityService.login(credentialsDTO);
     }
 
+    /**
+     * Обрабатывает запрос на интроспекцию (проверку) JWT-токена.
+     *
+     * @param tokenDTO DTO с JWT-токеном для проверки.
+     * @return Карта с результатами интроспекции (включая поле "active").
+     */
     @PostMapping("/introspection")
     public Map<String,Object> introspectJwt(@RequestBody TokenDTO tokenDTO){
         return securityService.introspectJwt(tokenDTO);

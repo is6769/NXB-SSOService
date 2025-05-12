@@ -24,6 +24,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Тесты для класса {@link SecurityService}.
+ * Проверяют логику аутентификации, загрузки данных пользователя и интроспекции JWT.
+ */
 @ExtendWith(MockitoExtension.class)
 class SecurityServiceTest {
 

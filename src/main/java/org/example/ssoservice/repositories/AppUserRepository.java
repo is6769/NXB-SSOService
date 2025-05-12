@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Репозиторий для работы с сущностями {@link AppUser}.
+ * Предоставляет методы для поиска и сохранения пользователей в базе данных.
+ */
 public interface AppUserRepository extends JpaRepository<AppUser,Long> {
 
     Optional<AppUser> findAppUserByMsisdn(String msisdn);

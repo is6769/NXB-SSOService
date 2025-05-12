@@ -18,6 +18,10 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Тесты для класса {@link DLQMessagePublisher}.
+ * Проверяют корректность отправки сообщений в Dead Letter Queue.
+ */
 @ExtendWith(MockitoExtension.class)
 class DLQMessagePublisherTest {
 

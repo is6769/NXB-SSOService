@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Сервис безопасности, отвечающий за аутентификацию пользователей,
+ * генерацию и интроспекцию JWT-токенов.
+ * Реализует {@link UserDetailsService} для интеграции со Spring Security.
+ */
 @Service
 public class SecurityService implements UserDetailsService {
 
@@ -23,16 +28,40 @@ public class SecurityService implements UserDetailsService {
         this.jwtService = jwtService;
     }
 
+    /**
+     * Выполняет вход пользователя в систему.
+     * Загружает данные пользователя по MSISDN и генерирует JWT-токен.
+     *
+     * @param credentialsDTO DTO с учетными данными пользователя (MSISDN).
+     * @return {@link TokenDTO} с сгенерированным JWT-токеном.
+     * @throws UsernameNotFoundException если пользователь с указанным MSISDN не найден.
+     */
     public TokenDTO login(CredentialsDTO credentialsDTO) {
         AppUserDetails appUserDetails = (AppUserDetails) loadUserByUsername(credentialsDTO.msisdn());
         return new TokenDTO(jwtService.generateJwt(appUserDetails));
     }
 
+    /**
+     * Загружает данные пользователя по его имени пользователя (MSISDN).
+     * Используется Spring Security для аутентификации.
+     *
+     * @param username Имя пользователя (MSISDN).
+     * @return {@link UserDetails} объект с данными пользователя.
+     * @throws UsernameNotFoundException если пользователь с указанным MSISDN не найден.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new AppUserDetails(appUserRepository.findAppUserByMsisdn(username).orElseThrow(()->new UsernameNotFoundException("No such msisdn present in database.")));
     }
 
+    /**
+     * Выполняет интроспекцию (проверку) JWT-токена.
+     * Проверяет валидность и срок действия токена.
+     *
+     * @param tokenDTO DTO с JWT-токеном для проверки.
+     * @return Карта с результатами интроспекции. Содержит поле "active" (true/false)
+     *         и другие клеймы токена, если он валиден.
+     */
     public Map<String,Object> introspectJwt(TokenDTO tokenDTO) {
         String token = tokenDTO.token();
         Map<String,Object> claims;

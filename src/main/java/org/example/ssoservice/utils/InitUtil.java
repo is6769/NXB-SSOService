@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
+/**
+ * Утилитарный класс для инициализации данных при запуске приложения.
+ * Создает пользователя-менеджера по умолчанию, если он отсутствует.
+ */
 @Component
 public class InitUtil implements CommandLineRunner{
 
@@ -20,6 +24,14 @@ public class InitUtil implements CommandLineRunner{
         this.appUserRepository = appUserRepository;
     }
 
+    /**
+     * Выполняется при запуске приложения.
+     * Проверяет наличие пользователей с ролью {@link AppRole#ROLE_MANAGER}.
+     * Если менеджеры отсутствуют, создает нового пользователя-менеджера
+     * с предопределенным MSISDN "-77777777777".
+     *
+     * @param args Аргументы командной строки (не используются).
+     */
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void run(String... args) {
